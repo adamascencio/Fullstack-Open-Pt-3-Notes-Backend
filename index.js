@@ -10,6 +10,7 @@ morgan.token("body", (req) => {
 app.use(express.json());
 app.use(cors());
 app.use(morgan(":method :url :status - :response-time ms - :body"));
+app.use(express.static('build'))
 
 let notes = [
   {
