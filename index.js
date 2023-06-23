@@ -22,7 +22,7 @@ const errorHandler = (err, req, res, next) => {
     return res.status(400).json({ error: err.message });
   }
 
-  next(error);
+  next(err);
 };
 
 app.use(express.json());
@@ -77,12 +77,7 @@ app.delete("/api/notes/:id", (req, res, next) => {
 });
 
 app.put("/api/notes/:id", (req, res, next) => {
-  const body = req.body;
-
-  const note = {
-    content: body.content,
-    important: body.important,
-  };
+  const { content, important } = req.body;
 
   Note.findByIdAndUpdate(
     req.params.id,
