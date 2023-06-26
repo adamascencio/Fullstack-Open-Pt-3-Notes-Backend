@@ -1,19 +1,7 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-mongoose.set("strictQuery", false);
-
-console.log(`connecting to MongoDB`);
-mongoose.set("strictQuery", false);
-mongoose
-  .connect(process.env.DATABASE_URL)
-  .then((result) => {
-    console.log("connected to MongoDB");
-  })
-  .catch((error) => {
-    console.log("error connecting to MongoDB:", error.message);
-  });
-
-const noteSchema = new mongoose.Schema({
+const noteSchema = new Schema({
   content: {
     type: String,
     minLength: 5,
