@@ -47,5 +47,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Adam Ascencio",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
 }
