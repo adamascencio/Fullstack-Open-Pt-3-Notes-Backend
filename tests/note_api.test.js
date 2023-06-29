@@ -43,6 +43,26 @@ test("a specific note is within the returned notes", async () => {
   expect(contents).toContain("Browser can execute only JavaScript");
 });
 
+test("a valid note can be added", async () => {
+  const newNote = {
+    content: "async/await simplifies making async calls",
+    important: true,
+  };
+
+  await api
+    .post("/api/notes")
+    .send(newNote)
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+
+  const res = await api.get("/api/notes");
+
+  const contents = res.body.map((r) => r.content);
+
+  expect(res.body).toHaveLength(initialNotes.length + 1);
+  expect(contents).toContain("async/await simplifies making async calls");
+});
+
 afterAll(async () => {
   await mongoose.connection.close();
 });
